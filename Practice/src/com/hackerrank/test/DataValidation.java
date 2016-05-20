@@ -1,4 +1,4 @@
-package com.atlassian.test;
+package com.hackerrank.test;
 
 import java.util.ArrayList;
 import java.util.List;
