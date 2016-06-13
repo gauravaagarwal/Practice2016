@@ -1,7 +1,5 @@
 package com.hackerrank.test;
 
-import java.util.Scanner;
-
 public class Base7 {
 
     /**
