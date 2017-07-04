@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jd="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.0.xsd
+   http://www.springframework.org/schema/mvc
+   http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+       http://www.springframework.org/schema/jdbc
+       http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+	<!-- How to include more then one base package -->
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.controller,com.beans" />
+	<mvc:annotation-driven />
+	<!-- Below configuration has been added to enable in memory DB HSQLDB -->
+	<jd:embedded-database id="dataSource1" type="HSQL">
+		<jd:script location="classpath:schema.sql" />
+		<jd:script location="classpath:test-data.sql" />
+	</jd:embedded-database>
+
+	<bean id="SpringJdbcDao" class="com.dao.SpringJdbcDaoImpl">
+		<property name="dataSource" ref="dataSource1" />
+	</bean>
+	<bean id="SpringJdbcService" class="com.service.SpringJdbcServiceImpl">
+		<property name="springJdbcDao" ref="SpringJdbcDao" />
+	</bean>
+
+
+</beans>

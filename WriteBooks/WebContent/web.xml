@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>WriteBooks</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- The job of the DispatcherServlet is to take an incoming URI and find 
+			the right combination of handlers (generally methods on Controller classes) 
+			and views (generally JSPs) that combine to form the page or resource that's 
+			supposed to be found at that location. -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<!-- used for root application context, mapping defined in below context 
+			parameter -->
+		<!-- for web application context, servlet init-param are used -->
+		<!-- ContextLoaderListener reads the Spring configuration file (with value 
+			given against contextConfigLocation in web.xml), parses it and loads the 
+			singleton bean defined in that config file. Similarly when we want to load 
+			prototype bean, we will use same webapplication context to load it. So we 
+			initialize the webapplication with ContextLoaderListener so that we read/parse/validate 
+			the config file in advance and whenever we wan to inject dependency we can 
+			straightaway do it without any delay. -->
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+</web-app>
