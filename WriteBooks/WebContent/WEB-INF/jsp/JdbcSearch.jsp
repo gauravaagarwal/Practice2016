@@ -1,6 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -12,7 +11,7 @@
 		<!-- This style is for menu  Start -->
 		
 		<style>
-	
+
 	* { margin: 0; padding: 0; }
 	body { background: url(img/bg.gif); }
 	#content { padding: 40px 20px; font-family: "Helvetica Neue", Helvetica, Arial; font-size: 12px; line-height: 18px; color: #cfdae3; margin: 0 auto; width : 400px;}
@@ -182,51 +181,95 @@
 	</ul> -->
 </div>
 	
+	
+	
 		<h1 style="margin: 0px auto; width: 400px;">User form</h1>
 		
-<form:form commandName="insertUser" method="POST" action="insertJdbcContact.do" id="userdetailsid" >		
+<form:form commandName="searchUserGet" method="POST" action="searchJdbcContact.do" id="userdetailsid" >		
 
 			<fieldset>
-				<legend>User details</legend>
+				<legend>Search User details</legend>
 				<ol>
 					<li>
 						<label for=name>Name</label>
+						<%-- <form:input path="name" id=name name=name type=text placeholder="First and last name" required autofocus/> --%>
 						<form:input path="name"  type="text" placeholder="First and last name" />
 					</li>
-					<li>
+<%-- 					<li>
 						<label for=name>Date</label>
 					<form:input path="dob" type="date" required="true" />
 					</li>
 					<li>
 						<label for=email>Email</label>
 						<form:input path="email" type="text" required="true" />
+						<form:input path="email" id=email name=email type=email placeholder="example@domain.com" required/>
 					</li>
 					<li>
 						<label for=phone>Phone</label>
 						<form:input path="phone" type="text" required="true" />
+						<form:input path="phone" id=phone name=phone type=tel placeholder="Eg. +447500000000" required/>
 					</li>
-				</ol>
+ --%>				</ol>
 			</fieldset>
-			<fieldset>
+<%-- 			<fieldset>
 				<legend>User address</legend>
 				<ol>
 					<li>
 
 						<label for=address>Address</label>
 						<form:input path="address" type="text" required="true" />
+						<form:textarea path="address" id=address name=address rows=5 required></form:textarea>
 					</li>
 					<li>
 						<label for=postcode>Post code</label>
 						<form:input path="pincode" type="text" required="true" />
+						<form:input path="pincode" id=pincode name=pincode type=text required/>
 					</li>
 					<li>
 						<label for=country>Country</label>
 						<form:input path="country" type="text" required="true" />
+						<form:input path="country" id=country name=country type=text required/>
+					</li>
+				</ol>
+			</fieldset> --%>
+<!-- 			<fieldset>
+				<legend>Card details</legend>
+				<ol>
+					<li>
+						<fieldset>
+							<legend>Card type</legend>
+							<ol>
+								<li>
+									<input id=visa name=cardtype type=radio>
+									<label for=visa>VISA</label>
+								</li>
+								<li>
+									<input id=amex name=cardtype type=radio>
+									<label for=amex>AmEx</label>
+								</li>
+								<li>
+									<input id=mastercard name=cardtype type=radio>
+									<label for=mastercard>Mastercard</label>
+								</li>
+							</ol>
+						</fieldset>
+					</li>
+					<li>
+						<label for=cardnumber>Card number</label>
+						<input id=cardnumber name=cardnumber type=number required>
+					</li>
+					<li>
+						<label for=secure>Security code</label>
+						<input id=secure name=secure type=number required>
+					</li>
+					<li>
+						<label for=namecard>Name on card</label>
+						<input id=namecard name=namecard type=text placeholder="Exact name as on the card" required>
 					</li>
 				</ol>
 			</fieldset>
-			<fieldset>
-				<button type=submit>Save User Details!</button>
+ -->			<fieldset>
+				<button type=submit>Search User Details!</button>
 			</fieldset>
 		</form:form>
 	</body>

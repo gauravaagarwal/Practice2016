@@ -1,6 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -12,7 +11,7 @@
 		<!-- This style is for menu  Start -->
 		
 		<style>
-	
+	/* The following styles are used only for this page - the actual plugin styles are in slidernav.css */
 	* { margin: 0; padding: 0; }
 	body { background: url(img/bg.gif); }
 	#content { padding: 40px 20px; font-family: "Helvetica Neue", Helvetica, Arial; font-size: 12px; line-height: 18px; color: #cfdae3; margin: 0 auto; width : 400px;}
@@ -161,13 +160,13 @@
 	
 	
 	<div id="header">
-	<div id="logo"><h1><a href="http://javainterview.co.in" class="tip-s" title="See, Learn"><span>Beginners Interview</span><em>/</em><strong></strong></a></h1></div>
+	<div id="logo"><h1><a href="http://javainterview.co.in" class="tip-s" title="See, Learn"><span>Beginners Interview</span><strong></strong></a></h1></div>
 	<a href="http://javabeginnerstutorial.com" class="return">&laquo; Return to Java Beginners Tutorial</a>
 </div>
 <div id="content">
 	
 	<ul class="button-list">
-		<li><a href='/' class='button' onclick="return false;">Home</a></li>
+		<li><a href='' class='button' onclick="return false;">Home</a></li>
 		<li><a href='insertJdbcContact.do' class='button' >Insert (Create)</a></li>
 		<li><a href='searchJdbcContact.do' class='button' >Search (Read)</a></li>
 		<li><a href='deleteJdbcContact.do' class='button' >Delete</a></li>
@@ -182,15 +181,18 @@
 	</ul> -->
 </div>
 	
+	
+	
 		<h1 style="margin: 0px auto; width: 400px;">User form</h1>
 		
-<form:form commandName="insertUser" method="POST" action="insertJdbcContact.do" id="userdetailsid" >		
+<form:form commandName="searchResultPost" method="POST" action="updateJdbcContact.do" id="userdetailsid" >		
 
 			<fieldset>
 				<legend>User details</legend>
 				<ol>
 					<li>
 						<label for=name>Name</label>
+						<%-- <form:input path="name" id=name name=name type=text placeholder="First and last name" required autofocus/> --%>
 						<form:input path="name"  type="text" placeholder="First and last name" />
 					</li>
 					<li>
@@ -200,10 +202,12 @@
 					<li>
 						<label for=email>Email</label>
 						<form:input path="email" type="text" required="true" />
+						<%-- <form:input path="email" id=email name=email type=email placeholder="example@domain.com" required/> --%>
 					</li>
 					<li>
 						<label for=phone>Phone</label>
 						<form:input path="phone" type="text" required="true" />
+						<%-- <form:input path="phone" id=phone name=phone type=tel placeholder="Eg. +447500000000" required/> --%>
 					</li>
 				</ol>
 			</fieldset>
@@ -214,19 +218,58 @@
 
 						<label for=address>Address</label>
 						<form:input path="address" type="text" required="true" />
+						<%-- <form:textarea path="address" id=address name=address rows=5 required></form:textarea> --%>
 					</li>
 					<li>
 						<label for=postcode>Post code</label>
 						<form:input path="pincode" type="text" required="true" />
+						<%-- <form:input path="pincode" id=pincode name=pincode type=text required/> --%>
 					</li>
 					<li>
 						<label for=country>Country</label>
 						<form:input path="country" type="text" required="true" />
+						<%-- <form:input path="country" id=country name=country type=text required/> --%>
 					</li>
 				</ol>
 			</fieldset>
-			<fieldset>
-				<button type=submit>Save User Details!</button>
+<!-- 			<fieldset>
+				<legend>Card details</legend>
+				<ol>
+					<li>
+						<fieldset>
+							<legend>Card type</legend>
+							<ol>
+								<li>
+									<input id=visa name=cardtype type=radio>
+									<label for=visa>VISA</label>
+								</li>
+								<li>
+									<input id=amex name=cardtype type=radio>
+									<label for=amex>AmEx</label>
+								</li>
+								<li>
+									<input id=mastercard name=cardtype type=radio>
+									<label for=mastercard>Mastercard</label>
+								</li>
+							</ol>
+						</fieldset>
+					</li>
+					<li>
+						<label for=cardnumber>Card number</label>
+						<input id=cardnumber name=cardnumber type=number required>
+					</li>
+					<li>
+						<label for=secure>Security code</label>
+						<input id=secure name=secure type=number required>
+					</li>
+					<li>
+						<label for=namecard>Name on card</label>
+						<input id=namecard name=namecard type=text placeholder="Exact name as on the card" required>
+					</li>
+				</ol>
+			</fieldset>
+ -->			<fieldset>
+				<button type=submit>Update User Details!</button>
 			</fieldset>
 		</form:form>
 	</body>

@@ -1,3 +1,10 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<html>
+<head>
+<title>Registration Page</title>
+</head>
+<body>
 <form:form commandName="insertUser" method="POST"
 	action="insertJdbcContact.do" id="userdetailsid">
 
@@ -29,3 +36,5 @@
 		<button type=submit>Save User Details!</button>
 	</fieldset>
 </form:form>
+</body>
+</html>
