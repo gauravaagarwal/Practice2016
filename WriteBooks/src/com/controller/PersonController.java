@@ -41,7 +41,7 @@ public class PersonController {
 	@RequestMapping(value = "/insertJdbcContact", method = RequestMethod.GET)
 	public ModelAndView insertMemDtls() {
 		ModelAndView mav = new ModelAndView("JdbcInsert");
-
+System.out.println("insertMemDtls:GET");
 		Person bean = new Person();
 		mav.addObject("insertUser", bean);
 		mav.addObject("status", "success");
@@ -51,6 +51,7 @@ public class PersonController {
 	@RequestMapping(value = "/insertJdbcContact", method = RequestMethod.POST)
 	public ModelAndView insertContact(@ModelAttribute("insertUser") Person vngmem) {
 		ModelAndView mav = new ModelAndView("JdbcInsert");
+		System.out.println("insertMemDtls:POST");
 		try {
 			Service.insertMemDts(vngmem);
 		} catch (Exception e) {
