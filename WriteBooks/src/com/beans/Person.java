@@ -79,4 +79,69 @@ public class Person {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Person)) {
+			return false;
+		}
+		Person other = (Person) obj;
+		if (address == null) {
+			if (other.address != null) {
+				return false;
+			}
+		} else if (!address.equals(other.address)) {
+			return false;
+		}
+		if (country == null) {
+			if (other.country != null) {
+				return false;
+			}
+		} else if (!country.equals(other.country)) {
+			return false;
+		}
+		if (dob == null) {
+			if (other.dob != null) {
+				return false;
+			}
+		} else if (!dob.equals(other.dob)) {
+			return false;
+		}
+		if (email == null) {
+			if (other.email != null) {
+				return false;
+			}
+		} else if (!email.equals(other.email)) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (phone == null) {
+			if (other.phone != null) {
+				return false;
+			}
+		} else if (!phone.equals(other.phone)) {
+			return false;
+		}
+		if (pincode == null) {
+			if (other.pincode != null) {
+				return false;
+			}
+		} else if (!pincode.equals(other.pincode)) {
+			return false;
+		}
+		return true;
+	}
+	
 }
