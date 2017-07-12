@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class QueueWithNode<T> implements Iterable<T>{
 
-	private AtomicInteger size = new AtomicInteger(0);
+	private int size = 0;
 	private Node first;
 	private Node last;
 
@@ -29,34 +29,34 @@ public class QueueWithNode<T> implements Iterable<T>{
 	}
 
 	public synchronized boolean enqueue(T element) {
-		if (size.get() == Integer.MAX_VALUE) {
+		if (size == Integer.MAX_VALUE) {
 			return false;
 		}
-		size.incrementAndGet();
-		if (size.get() == 1) {
+		if (size == 0) {
 			first = last = new Node(element);
 		} else {
 			last = last.next = new Node(element);
 		}
+		size++;
 		return true;
 	}
 
 	public synchronized T dequeue() {
-		if (size.get() == 0) {
+		if (size == 0) {
 			return null;
 		}
 		Node element = first;
-		if (size.get() == 1) {
+		if (size == 1) {
 			first = last = null;
 		} else {
 			first = first.next;
 		}
-		size.decrementAndGet();
+		size--;
 		return element.item;
 	}
 
 	public int getSize() {
-		return size.get();
+		return size;
 	}
 	
 	private class QueueIterator implements Iterator<T>{
@@ -69,9 +69,9 @@ public class QueueWithNode<T> implements Iterable<T>{
 		}
 
 		public T next() {
-			Node temp=current;
+			T item= current.item;
 			current=current.next;
-			return temp.item;
+			return item;
 		}
 		
 		public void remove(){

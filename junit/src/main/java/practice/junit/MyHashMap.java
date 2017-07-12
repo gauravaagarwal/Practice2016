@@ -7,6 +7,7 @@ public class MyHashMap<K, V> {
 
 	private int size=0;
 	private final int LIMIT;
+	transient Node<K, V>[] table;
 
 	public MyHashMap(int limit) {
 		LIMIT = limit;
@@ -54,7 +55,6 @@ public class MyHashMap<K, V> {
 		return current.value;
 	}
 
-	transient Node<K, V>[] table;
 
 	private static class Node<K, V> {
 		int hash;
@@ -110,7 +110,7 @@ public class MyHashMap<K, V> {
 		map.put("TEST", "TEST VALUE");
 		map.put("TEST", "TEST VALUE2");
 		map.put("TEST1", "TEST VALUE3");
-		System.out.println(map.get("TEST"));
+		System.out.println(map.get("TEST3"));
 		System.out.println(map.size());
 	}
 }

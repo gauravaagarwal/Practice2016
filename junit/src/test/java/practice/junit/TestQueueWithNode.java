@@ -1,7 +1,9 @@
 package practice.junit;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -40,15 +42,16 @@ public class TestQueueWithNode {
 		service.execute(deleteWorker);
 		service.shutdown();
 		assertTrue(queue.getSize()<20);
+		service.isTerminated();
 	}
 
 	@Test
 	public void testIterator(){
 		for (int i=0;i<=20;i++)
 			queue.enqueue(i);
-		
-		while (queue.iterator().hasNext()) {
-			queue.iterator().next();
+		Iterator<Integer> iterator=queue.iterator();
+		for (int i=0;iterator.hasNext();i++) {
+			assertEquals(new Integer(i),iterator.next());
 		}
 	}
 }

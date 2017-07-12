@@ -1,24 +1,36 @@
 package practice.junit;
 
-public class MyStack {
-	private static final int LIMIT = 10;
-	private int[] data = new int[LIMIT];
-	private int index = -1;
+import java.lang.reflect.Array;
 
-	public boolean push(int element) {
-		if (data.length == LIMIT) {
+public class MyStack<T> {
+	private Node<T>[] data =null;
+	private int index = -1;
+	MyStack(final int limit){
+		data = new Node[limit];
+	}
+	MyStack(Class<T> c,int limit){
+		data = (Node<T>[]) Array.newInstance(c, limit);
+	}
+	private static class Node<T>{
+		T element;
+		Node(T element){
+			this.element=element;
+		}
+	}
+	public boolean push(T element) {
+		if (data.length <= index+1) {
 			return false;
 		}
 		index++;
-		data[index] = element;
+		data[index] = new Node<T>(element);
 		return true;
 
 	}
 
-	public int pop() {
+	public T pop() {
 		if (index == -1)
-			throw new RuntimeException("Stack already Empty");
-		int element = data[index];
+			return null;
+		T element = data[index].element;
 		index--;
 		return element;
 	}
