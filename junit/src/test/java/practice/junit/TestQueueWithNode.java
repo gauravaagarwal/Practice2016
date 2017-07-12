@@ -42,4 +42,13 @@ public class TestQueueWithNode {
 		assertTrue(queue.getSize()<20);
 	}
 
+	@Test
+	public void testIterator(){
+		for (int i=0;i<=20;i++)
+			queue.enqueue(i);
+		
+		while (queue.iterator().hasNext()) {
+			queue.iterator().next();
+		}
+	}
 }

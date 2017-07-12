@@ -1,8 +1,9 @@
 package practice.junit;
 
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class QueueWithNode<T> {
+public class QueueWithNode<T> implements Iterable<T>{
 
 	private AtomicInteger size = new AtomicInteger(0);
 	private Node first;
@@ -56,6 +57,31 @@ public class QueueWithNode<T> {
 
 	public int getSize() {
 		return size.get();
+	}
+	
+	private class QueueIterator implements Iterator<T>{
+		private Node current;
+		public QueueIterator(){
+			current=first;
+		}
+		public boolean hasNext() {
+			return current!=null && current.item!=null;
+		}
+
+		public T next() {
+			Node temp=current;
+			current=current.next;
+			return temp.item;
+		}
+		
+		public void remove(){
+			
+		}
+		
+	}
+
+	public Iterator<T> iterator() {
+		return new QueueIterator();
 	}
 
 }
