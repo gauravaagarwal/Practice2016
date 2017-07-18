@@ -6,12 +6,12 @@ import java.util.Objects;
 public class MyHashMap<K, V> {
 
 	private int size=0;
-	private final int LIMIT;
+	private final int limit;
 	transient Node<K, V>[] table;
 
 	public MyHashMap(int limit) {
-		LIMIT = limit;
-		table = (Node<K, V>[]) new Node[LIMIT];
+		this.limit = limit;
+		table = (Node<K, V>[]) new Node[limit];
 	}
 
 	public int size() {
@@ -19,7 +19,7 @@ public class MyHashMap<K, V> {
 	}
 
 	private int hash(K key) {
-		return key.hashCode() % LIMIT;
+		return key.hashCode() % limit;
 	}
 
 	public V put(K key, V value) {
@@ -32,13 +32,13 @@ public class MyHashMap<K, V> {
 			size++;
 			return value;
 		}
-		Node<K, V> current = table[hash];
-		do {
+		Node<K, V> current = table[hash];//current can't be null, already handled above
+		do{
 			if (current.key.equals(key)) {
 				return current.setValue(value);
 			}
 			current = current.next;
-		} while (current.next != null);
+		} while (current.next!=null) ;
 		current.next = newNode;
 		size++;
 		return value;
@@ -57,10 +57,10 @@ public class MyHashMap<K, V> {
 
 
 	private static class Node<K, V> {
-		int hash;
-		K key;
-		V value;
-		Node<K, V> next;
+		private final int hash;
+		private final K key;
+		private V value;
+		private Node<K, V> next;
 
 		public Node(int hash, K key, V value, Node<K, V> next) {
 			super();
@@ -68,14 +68,6 @@ public class MyHashMap<K, V> {
 			this.key = key;
 			this.value = value;
 			this.next = next;
-		}
-
-		public final K getKey() {
-			return key;
-		}
-
-		public final V getValue() {
-			return value;
 		}
 
 		public final String toString() {
@@ -111,6 +103,8 @@ public class MyHashMap<K, V> {
 		map.put("TEST", "TEST VALUE2");
 		map.put("TEST1", "TEST VALUE3");
 		System.out.println(map.get("TEST3"));
+		System.out.println(map.get("TEST"));
+		System.out.println(map.get("TEST1"));
 		System.out.println(map.size());
 	}
 }

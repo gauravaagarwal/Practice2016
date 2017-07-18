@@ -3,81 +3,84 @@ package practice.junit;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class QueueWithNode<T> implements Iterable<T>{
+/**
+ * @author gauravaagarwal
+ *
+ * @param <T>
+ */
+public class QueueWithNode<T> implements Iterable<T> {
 
 	private int size = 0;
-	private Node first;
-	private Node last;
+	private Node<T> head;
+	private Node<T> last;
 
-	private class Node {
+	private static class Node<T> {
 		T item;
-		Node next;
+		Node<T> next;
 
 		Node(T item) {
 			this.item = item;
 		}
-		
-		public String toString(){
-			return " this->"+ item.toString() +" next->"+ next.item.toString();
-		}
-	}
-	public String toString(){
-		return first.toString() +":  :"+ last.toString()+" : size: "+size;
-	}
-	
-	public QueueWithNode() {
 	}
 
+	public QueueWithNode() {
+		head = last = new Node<T>(null);
+	}
+
+	/**
+	 * only use last
+	 * 
+	 * @param element
+	 * @return
+	 */
 	public synchronized boolean enqueue(T element) {
 		if (size == Integer.MAX_VALUE) {
 			return false;
 		}
-		if (size == 0) {
-			first = last = new Node(element);
-		} else {
-			last = last.next = new Node(element);
-		}
+		last = last.next = new Node<T>(element);
 		size++;
 		return true;
 	}
 
+	/** only use first
+	 * @return
+	 */
 	public synchronized T dequeue() {
 		if (size == 0) {
 			return null;
 		}
-		Node element = first;
-		if (size == 1) {
-			first = last = null;
-		} else {
-			first = first.next;
-		}
+		Node<T> first = head.next;
+		head.next=first.next;
+		first.next=null;
 		size--;
-		return element.item;
+		return first.item;
 	}
 
 	public int getSize() {
 		return size;
 	}
-	
-	private class QueueIterator implements Iterator<T>{
-		private Node current;
-		public QueueIterator(){
-			current=first;
+
+	private class QueueIterator implements Iterator<T> {
+		private Node<T> current;
+
+		public QueueIterator() {
+			current = head;
 		}
+
 		public boolean hasNext() {
-			return current!=null && current.item!=null;
+			return current != null && current.item != null;
 		}
 
 		public T next() {
-			T item= current.item;
-			current=current.next;
+			T item = current.item;
+			current = current.next;
 			return item;
 		}
-		
-		public void remove(){
-			
+
+		public void remove() {
+
 		}
-		
+
 	}
 
 	public Iterator<T> iterator() {

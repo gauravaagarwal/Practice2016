@@ -10,7 +10,7 @@ public class Codility {
 
     public static void main(String[] args) {
         int[] A = { 2, -4, 6, -3, 9 };
-       // System.out.println(solution(A));
+        System.out.println(solution(A));
         int[] AA = { 2000000000, -40000000, 600000000, -3, 999999999 };
        // System.out.println(solution(AA));
         int[] AACC = { 2000000000, -40000000, 600000000, -300000000, 999999999 };
@@ -20,7 +20,7 @@ public class Codility {
         int[] B1={500000,500000,0,0,0,20000};
         //System.out.println(solution(A1,B1));
         //Performance.main(null);
-        StairCase(6);
+        //StairCase(6);
     }
 
     static public int solution(int[] A) {
