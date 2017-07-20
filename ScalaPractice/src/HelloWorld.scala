@@ -6,31 +6,34 @@ object HelloWorld {
     println("Hello, world!") // prints Hello World
 
     println(1.+(2));
-
+    main();
     newFunction(callThisFunction);
-     println(callThisFunctionWithReturnType);
-     callThisFunctionWithArgument(200);
+    println(callThisFunctionWithReturnType);
+    callThisFunctionWithArgument(200);
   }
 
   def callThisFunction() {
     println("calling function as argument");
   }
-  def callThisFunctionWithArgument(x : Int) {
+  def callThisFunctionWithArgument(x: Int) {
     println("calling function with method parameter: " + x);
   }
-    def callThisFunctionWithReturnType(): Int = {
+  def callThisFunctionWithReturnType(): Int = {
     println("calling function with return type and value 100");
     100
   }
 
+  def main() {
+    println("duplicate");
+  }
 
   def newFunction(callback: () => Unit) {
     //while (true) {
-      callback();
-      Thread.sleep(1000);
+    callback();
+    Thread.sleep(1000);
     //}
   }
-  
+
   def newFunctionWithReturn(callback: () => Int) {
     while (true) {
       println(callback());
